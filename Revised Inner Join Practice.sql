@@ -1,8 +1,5 @@
-
-WITH
-best_games AS (
-	Select Distinct Top 500
---Chose TOP 500 for games with positive rating
+Select Distinct
+--Used Distinct to get rid of duplicate game titles
 	title,
 	YEAR(date_release) AS year_release,
 	rating,
@@ -10,25 +7,14 @@ best_games AS (
 	(price_final - price_original)AS final_price_difference,
 	discount,
 	all_games.Genre AS games_genre
-	From steam_game_recom AS steam
-	Inner JOIN
---Wrote Inner Join for Personal Preference even though Computer will automatically change it from JOIN
-	game_sales AS all_games
-	ON
-	steam.title = all_games.Name
-	WHERE rating = 'Positive' 
-	OR rating = 'Very Positive' 
-	OR rating = 'Overwhelmingly Positive' 
-	OR rating = 'Mostly Positive' 
---Thought rating >='Postive' would work but had to write out all ratings so Query will run all the ratings from positive and up 
-)
---Created a temp table so final query doesn't look so congested
-Select *
-From best_games
-WHERE games_genre = 'Action'
-Or games_genre = 'Adventure'
-Or games_genre = 'Role-Playing'
-Or games_genre = 'Fighting'
---Had issues filtering out genre in temp table, so had to filter out in final query
-ORDER BY discount DESC
---Final Query 
+From steam_game_recom AS steam
+Inner JOIN game_sales AS all_games
+ON steam.title = all_games.Name
+--Wrote Inner Join to combine only games with exact title on all_games table to steam_game_recom
+WHERE 
+	rating IN ('Positive', 'Very Positive', 'Overwhelmingly Positive', 'Mostly Positive') AND
+	all_games.Genre IN ('Action', 'Adventure', 'Role-Playing', 'Fighting')
+--Only wanted games people most liked and was in the category that was chosen
+ORDER BY year_release DESC, user_reviews DESC
+--Categorized games by latest year and most user reviews
+
