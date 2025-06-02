@@ -1,5 +1,5 @@
 
-Select Distinct
+Select 
 	YEAR(date) AS year_of,
 	state,
 	SUM(cases) AS case_per_state,
