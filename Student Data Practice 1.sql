@@ -12,4 +12,4 @@ GROUP BY
 --Grouped categories to find the average number
 ORDER BY
 	Pass_Fail DESC, internet_access
---Sort results by pass status and internet access
+--Sort results by pass status and internet access to find correlation 
