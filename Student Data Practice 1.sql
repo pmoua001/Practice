@@ -8,12 +8,12 @@ SELECT
 	AVG(Final_Exam_Score) AS avg_final_score,
 	AVG(Past_Exam_Scores) AS avg_past_exam,
 	Internet_Access_at_Home AS internet_access,
-	Extracurricular_Activities AS num_students_play_sports,
+	Extracurricular_Activities AS student_or_athlete,
 	Pass_Fail
 FROM student_performance_dataset
 --added Extracurricular_Activities to find if student athletes does better than regular students or vice versa
 GROUP BY 
-	Gender, Pass_Fail, Internet_Access_at_Home,Extracurricular_Activities
+	Gender, Pass_Fail, Internet_Access_at_Home, Extracurricular_Activities
 --Grouped by gender to categorized all the average of the above categories
 ORDER BY
 	Pass_Fail DESC, internet_access
