@@ -15,6 +15,6 @@ WHERE
 	rating IN ('Positive', 'Very Positive', 'Overwhelmingly Positive', 'Mostly Positive') AND
 	all_games.Genre IN ('Action', 'Adventure', 'Role-Playing', 'Fighting')
 --Only wanted games people most liked and was in the category that was chosen
-ORDER BY year_release DESC, user_reviews DESC
---Categorized games by latest year and most user reviews
+ORDER BY discount DESC, user_reviews DESC
+--Categorized games by biggest discount and most user reviews
 
